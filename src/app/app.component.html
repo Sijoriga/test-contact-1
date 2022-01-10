@@ -1,0 +1,56 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Agenda de contactos</a>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+      <ul class="list-group">
+        <li *ngFor="let contact of contactArray" class="list-group-item list-group-item-action" (click)="openForEdit(contact)" [class.active]="contact == selectedContact">
+          <span class="badge badge-primary">
+            {{contact.id}} 
+          </span>
+            {{contact.name}} | 
+            {{contact.phone}} | 
+            {{contact.birthday}} |
+            {{contact.address}} |
+            {{contact.mail}}
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            Insertar un nuevo contacto
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedContact.name" placeholder="Insertar nombre" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="number" [(ngModel)]="selectedContact.phone" placeholder="Insertar Telefono" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="date" [(ngModel)]="selectedContact.birthday" placeholder="Insertar cumpleaños" class="form-control datepicker">
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedContact.address" placeholder="Insertar direccion" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="email" [(ngModel)]="selectedContact.mail" placeholder="Insertar correo" class="form-control">
+          </div>
+          <button *ngIf="selectedContact.id == 0" (click)="addOrEdit()" class="btn btn-primary">
+            Guardar
+          </button>
+          <button *ngIf="selectedContact.id != 0" (click)="addOrEdit()" class="btn btn-success">
+            Actualizar
+          </button>
+          <button *ngIf="selectedContact.id != 0" (click)="delete()" class="btn btn-danger">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    </div>
+  </div>
+</div>
+
